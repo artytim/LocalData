@@ -24,6 +24,10 @@
             android:label="@string/title_activity_signin"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".PrefsActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

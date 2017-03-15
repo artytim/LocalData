@@ -1,5 +1,7 @@
 package com.example.android.data.model;
 
+import java.util.UUID;
+
 /**
  * Created by timshum on 3/14/2017.
  */
@@ -18,6 +20,11 @@ public class DataItem {
     }
 
     public DataItem(String itemId, String itemName, String description, String category, int sortPosition, double price, String image) {
+
+        if (itemId == null) {
+            itemId = UUID.randomUUID().toString();
+        }
+
         this.itemId = itemId;
         this.itemName = itemName;
         this.description = description;

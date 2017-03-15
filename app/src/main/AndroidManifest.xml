@@ -19,6 +19,11 @@
             android:name=".DetailActivity"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".SigninActivity"
+            android:label="@string/title_activity_signin"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

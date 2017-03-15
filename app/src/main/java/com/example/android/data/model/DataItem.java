@@ -1,12 +1,14 @@
 package com.example.android.data.model;
 
+import android.os.Parcel;
+
 import java.util.UUID;
 
 /**
  * Created by timshum on 3/14/2017.
  */
 
-public class DataItem {
+public class DataItem implements android.os.Parcelable {
     // Better using only Java primitive data types & String - easy to pass data objects between tiers of app
     private String itemId; // In Android, it's common practice to use string value as the Primary key (UUID)
     private String itemName;
@@ -90,6 +92,7 @@ public class DataItem {
         this.sortPosition = sortPosition;
     }
 
+
     @Override
     public String toString() {
         return "DataItem{" +
@@ -102,4 +105,42 @@ public class DataItem {
                 ", image='" + image + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.itemId);
+        dest.writeString(this.itemName);
+        dest.writeString(this.description);
+        dest.writeString(this.category);
+        dest.writeInt(this.sortPosition);
+        dest.writeDouble(this.price);
+        dest.writeString(this.image);
+    }
+
+    protected DataItem(Parcel in) {
+        this.itemId = in.readString();
+        this.itemName = in.readString();
+        this.description = in.readString();
+        this.category = in.readString();
+        this.sortPosition = in.readInt();
+        this.price = in.readDouble();
+        this.image = in.readString();
+    }
+
+    public static final Creator<DataItem> CREATOR = new Creator<DataItem>() {
+        @Override
+        public DataItem createFromParcel(Parcel source) {
+            return new DataItem(source);
+        }
+
+        @Override
+        public DataItem[] newArray(int size) {
+            return new DataItem[size];
+        }
+    };
 }

@@ -20,6 +20,7 @@ import java.util.List;
 public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHolder> {
 
     public static final String ITEM_ID_KEY = "item_id_key";
+    public static final String ITEM_KEY = "item_key";
     private List<DataItem> mItems;
     private Context mContext;
 
@@ -56,10 +57,10 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
             public void onClick(View v) {
 //                Toast.makeText(mContext, "You selected " + item.getItemName(),
 //                        Toast.LENGTH_SHORT).show();
-                String itemId = item.getItemId();
+//                String itemId = item.getItemId();
                 Intent intent = new Intent(mContext, DetailActivity.class);
-                intent.putExtra(ITEM_ID_KEY, itemId);
-                mContext.startActivity(intent); // launch the activity
+                intent.putExtra(ITEM_KEY, item);    // pass the entire object
+                mContext.startActivity(intent);     // launch the activity
             }
         });
 
